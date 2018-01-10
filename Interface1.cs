@@ -16,5 +16,6 @@ namespace Lab5
         void eatBirds(int countBirds);
         void setMainColor(Color color);
         void setDopColor(Color color);
+        string getInfo();
     }
 }

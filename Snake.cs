@@ -55,5 +55,13 @@ namespace Lab5
         {
             ColorBody2 = color;
         }
+        /*
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxCountMouse + ";" + MaxCountBirds + ";" + height + ";"
+                + ColorBody1.Name + ";" + ColorBody2.Name;
+        }
+        */
+        public abstract string getInfo();
     }
 }

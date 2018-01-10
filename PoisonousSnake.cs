@@ -100,6 +100,24 @@ namespace Lab5
 
         }
 
+        public PoisonousSnake(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                MaxCountMouse= Convert.ToInt32(strs[1]);
+                MaxCountBirds= Convert.ToInt32(strs[2]);
+                height= Convert.ToInt32(strs[3]);
+                ColorBody1 = Color.FromName(strs[4]);
+                ColorBody2 = Color.FromName(strs[5]);
+
+            }
+            startPosX = 60;
+            startPosY = 60;
+        }
+       
+        
         public override void moveAnimal(Graphics g)
         {
             startPosX += (MaxSpeed * 50 / height);
@@ -138,6 +156,12 @@ namespace Lab5
             g.DrawLine(pen1, pp1, pp2);
             g.DrawLine(pen1, pp3, pp4);
             g.DrawLine(pen1, pp5, pp6);
+        }
+
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxCountMouse + ";" + MaxCountBirds + ";" + height + ";"
+                + ColorBody1.Name + ";" + ColorBody2.Name;
         }
     }
 }
