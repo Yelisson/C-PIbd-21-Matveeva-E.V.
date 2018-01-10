@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3
+namespace lab4
 {
     public class Kobra: PoisonousSnake
     {
         private bool leftHood;
         private bool rightHood;
-        private Color dopColor;
+        private System.Drawing.Color dopColor;
 
         public Kobra(int maxSpeed, int maxCountMouses, int maxCountBirdss, int height,
             Color color1, bool leftHood, bool rightHood,
