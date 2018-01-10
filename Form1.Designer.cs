@@ -1,4 +1,4 @@
-﻿namespace Lab3
+﻿namespace lab4
 {
     partial class Form1
     {
@@ -35,6 +35,10 @@
             this.buttonSetSnake = new System.Windows.Forms.Button();
             this.buttonSetKobra = new System.Windows.Forms.Button();
             this.buttonGetSnake = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.buttonDown = new System.Windows.Forms.Button();
+            this.buttonUp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSmall)).BeginInit();
             this.SuspendLayout();
@@ -44,22 +48,22 @@
             this.pictureBoxBig.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBoxBig.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxBig.Name = "pictureBoxBig";
-            this.pictureBoxBig.Size = new System.Drawing.Size(500, 370);
+            this.pictureBoxBig.Size = new System.Drawing.Size(498, 365);
             this.pictureBoxBig.TabIndex = 0;
             this.pictureBoxBig.TabStop = false;
             // 
             // pictureBoxSmall
             // 
-            this.pictureBoxSmall.Location = new System.Drawing.Point(506, 260);
+            this.pictureBoxSmall.Location = new System.Drawing.Point(518, 263);
             this.pictureBoxSmall.Name = "pictureBoxSmall";
-            this.pictureBoxSmall.Size = new System.Drawing.Size(178, 110);
+            this.pictureBoxSmall.Size = new System.Drawing.Size(193, 102);
             this.pictureBoxSmall.TabIndex = 1;
             this.pictureBoxSmall.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(507, 207);
+            this.label1.Location = new System.Drawing.Point(515, 204);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 2;
@@ -67,17 +71,17 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(556, 207);
+            this.maskedTextBox1.Location = new System.Drawing.Point(563, 201);
             this.maskedTextBox1.Mask = "0";
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(28, 20);
+            this.maskedTextBox1.Size = new System.Drawing.Size(27, 20);
             this.maskedTextBox1.TabIndex = 3;
             // 
             // buttonSetSnake
             // 
-            this.buttonSetSnake.Location = new System.Drawing.Point(524, 12);
+            this.buttonSetSnake.Location = new System.Drawing.Point(518, 149);
             this.buttonSetSnake.Name = "buttonSetSnake";
-            this.buttonSetSnake.Size = new System.Drawing.Size(128, 23);
+            this.buttonSetSnake.Size = new System.Drawing.Size(167, 23);
             this.buttonSetSnake.TabIndex = 4;
             this.buttonSetSnake.Text = "Отдать змею";
             this.buttonSetSnake.UseVisualStyleBackColor = true;
@@ -85,9 +89,9 @@
             // 
             // buttonSetKobra
             // 
-            this.buttonSetKobra.Location = new System.Drawing.Point(524, 42);
+            this.buttonSetKobra.Location = new System.Drawing.Point(518, 172);
             this.buttonSetKobra.Name = "buttonSetKobra";
-            this.buttonSetKobra.Size = new System.Drawing.Size(128, 23);
+            this.buttonSetKobra.Size = new System.Drawing.Size(167, 23);
             this.buttonSetKobra.TabIndex = 5;
             this.buttonSetKobra.Text = "Отдать кобру";
             this.buttonSetKobra.UseVisualStyleBackColor = true;
@@ -95,19 +99,60 @@
             // 
             // buttonGetSnake
             // 
-            this.buttonGetSnake.Location = new System.Drawing.Point(524, 233);
+            this.buttonGetSnake.Location = new System.Drawing.Point(518, 234);
             this.buttonGetSnake.Name = "buttonGetSnake";
-            this.buttonGetSnake.Size = new System.Drawing.Size(128, 23);
+            this.buttonGetSnake.Size = new System.Drawing.Size(167, 23);
             this.buttonGetSnake.TabIndex = 6;
             this.buttonGetSnake.Text = "Забрать змею";
             this.buttonGetSnake.UseVisualStyleBackColor = true;
             this.buttonGetSnake.Click += new System.EventHandler(this.buttonGetSnake_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(574, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = " Уровни:";
+            // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.Location = new System.Drawing.Point(518, 25);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(167, 82);
+            this.listBoxLevels.TabIndex = 8;
+            // 
+            // buttonDown
+            // 
+            this.buttonDown.Location = new System.Drawing.Point(518, 114);
+            this.buttonDown.Name = "buttonDown";
+            this.buttonDown.Size = new System.Drawing.Size(53, 23);
+            this.buttonDown.TabIndex = 9;
+            this.buttonDown.Text = "<<";
+            this.buttonDown.UseVisualStyleBackColor = true;
+            this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
+            // 
+            // buttonUp
+            // 
+            this.buttonUp.Location = new System.Drawing.Point(634, 113);
+            this.buttonUp.Name = "buttonUp";
+            this.buttonUp.Size = new System.Drawing.Size(51, 23);
+            this.buttonUp.TabIndex = 10;
+            this.buttonUp.Text = ">>";
+            this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 370);
+            this.ClientSize = new System.Drawing.Size(723, 365);
+            this.Controls.Add(this.buttonUp);
+            this.Controls.Add(this.buttonDown);
+            this.Controls.Add(this.listBoxLevels);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonGetSnake);
             this.Controls.Add(this.buttonSetKobra);
             this.Controls.Add(this.buttonSetSnake);
@@ -133,6 +178,10 @@
         private System.Windows.Forms.Button buttonSetSnake;
         private System.Windows.Forms.Button buttonSetKobra;
         private System.Windows.Forms.Button buttonGetSnake;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Button buttonDown;
+        private System.Windows.Forms.Button buttonUp;
     }
 }
 

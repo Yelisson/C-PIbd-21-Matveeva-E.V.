@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Lab3
+namespace lab4
 {
     public partial class Form1 : Form
     {
@@ -16,16 +16,24 @@ namespace Lab3
         public Form1()
         {
             InitializeComponent();
-            terrarium = new Terrarium();
+            terrarium = new Terrarium(5);
+            for (int i = 1; i < 6; i++)
+            {
+                listBoxLevels.Items.Add("Уровень " + i);
+            }
+            listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
             Draw();
         }
 
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxBig.Width, pictureBoxBig.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            terrarium.Draw(gr, pictureBoxBig.Width, pictureBoxBig.Height);
-            pictureBoxBig.Image = bmp;
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxBig.Width, pictureBoxBig.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                terrarium.Draw(gr);
+                pictureBoxBig.Image = bmp;
+            }
         }
         private void buttonSetSnake_Click(object sender, EventArgs e)
         {
@@ -37,6 +45,7 @@ namespace Lab3
                 Draw();
                 MessageBox.Show("Место: " + place);
             }
+
         }
 
         private void buttonSetKobra_Click(object sender, EventArgs e)
@@ -53,20 +62,49 @@ namespace Lab3
                     MessageBox.Show("Место: " + place);
                 }
             }
+
         }
 
         private void buttonGetSnake_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox1.Text != "")
+
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                var Snake = terrarium.getSnakeInTerrarium(Convert.ToInt32(maskedTextBox1.Text));
-                Bitmap bmp = new Bitmap(pictureBoxSmall.Width, pictureBoxSmall.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                Snake.setPosition(47, 47);
-                Snake.drawAnimal(gr);
-                pictureBoxSmall.Image = bmp;
-                Draw();
+                string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
+                if (maskedTextBox1.Text != "")
+                {
+                    Interface1 Snake = terrarium.getSnakeInTerrarium(Convert.ToInt32(maskedTextBox1.Text));
+                    if (Snake != null)
+                    {
+                        Bitmap bmp = new Bitmap(pictureBoxSmall.Width, pictureBoxSmall.Height);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        Snake.setPosition(50, 50);
+                        Snake.drawAnimal(gr);
+                        pictureBoxSmall.Image = bmp;
+                        Draw();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Извинте, на этом месте нет машины");
+                    }
+                }
             }
+
+        }
+
+        private void buttonDown_Click(object sender, EventArgs e)
+        {
+            terrarium.LevelDown();
+            listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
+            Draw();
+        }
+
+        private void buttonUp_Click(object sender, EventArgs e)
+        {
+            terrarium.LevelUp();
+            listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
+            Draw();
+
         }
     }
 }

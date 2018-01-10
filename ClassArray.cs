@@ -4,41 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3
+namespace lab4
 {
-    class ClassArray<T> where T:Interface1
+    class ClassArray<T> where T : Interface1
     {
-        private T[] places;
+        private Dictionary<int, T> places;
+        private int maxCount;
         private T defaultValue;
 
-        public ClassArray(int sizes, T defVal)
+        public ClassArray(int size, T defVal)
         {
             defaultValue = defVal;
-            places = new T[sizes];
-            for (int i = 0; i < places.Length; i++)
-            {
-                places[i] = defaultValue;
-            }
+            places = new Dictionary<int, T>();
+            maxCount = size;
         }
         public static int operator +(ClassArray<T> p, T poisonousSnake)
         {
-            for (int i = 0; i < p.places.Length; i++)
+            if (p.places.Count == p.maxCount)
+            {
+                return -1;
+            }
+            for (int i = 0; i < p.places.Count; i++)
             {
                 if (p.CheckFreePlace(i))
                 {
-                    p.places[i] = poisonousSnake;
+                    p.places.Add(i,poisonousSnake);
                     return i;
                 }
             }
-            return -1;
+            p.places.Add(p.places.Count, poisonousSnake);
+            return p.places.Count-1;
         }
 
         public static T operator -(ClassArray<T> p, int index)
         {
-            if (!p.CheckFreePlace(index))
+            if (p.places.ContainsKey(index))
             {
                 T poisonousSnake = p.places[index];
-                p.places[index] = p.defaultValue;
+                p.places.Remove(index);
                 return poisonousSnake;
             }
             return p.defaultValue;
@@ -46,28 +49,19 @@ namespace Lab3
 
         private bool CheckFreePlace(int index)
         {
-            if (index < 0 || index > places.Length)
-            {
-                return false;
-            }
-            if (places[index] == null)
-            {
-                return true;
-            }
-            if (places[index].Equals(defaultValue))
-            {
-                return true;
-            }
-            return false;
+            return !places.ContainsKey(index);
         }
 
-        public T getObject(int ind)
+        public T this[int ind]
         {
-            if (ind > -1 && ind < places.Length)
+          get
             {
-                return places[ind];
+                if (places.ContainsKey(ind))
+                {
+                    return places[ind];
+                }
+                return defaultValue;
             }
-            return defaultValue;
         }
     }
 }
