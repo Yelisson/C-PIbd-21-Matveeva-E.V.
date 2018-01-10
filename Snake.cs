@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab2
+namespace Lab3
 {
-    public abstract class Snake: Interface1
+    public abstract class Snake:Interface1
     {
         public abstract void drawAnimal(Graphics g);
         public abstract void moveAnimal(Graphics g);
