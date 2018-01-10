@@ -10,6 +10,7 @@ namespace Lab5
 {
     class Terrarium
     {
+
         List<ClassArray<Interface1>> terrariumStages;
         int countPlaces = 4;
         int placeSizeWidth = 270;
@@ -22,6 +23,23 @@ namespace Lab5
             {
                 return currentLevel;
             }
+        }
+
+        public void Draw(Graphics g)
+        {
+            DrawMarking(g);
+            int i = 0;
+            foreach (var poisonousSnake in terrariumStages[currentLevel])
+            {
+                poisonousSnake.setPosition(35 + i / 2 * placeSizeWidth + 35, i % 2 * placeSizeHeight + 75);
+                poisonousSnake.drawAnimal(g);
+                i++;
+            }
+        }
+
+        public void Sort()
+        {
+            terrariumStages.Sort();
         }
 
         public Terrarium(int countStages)
@@ -59,19 +77,6 @@ namespace Lab5
             return terrariumStages[currentLevel] - number;
         }
 
-        public void Draw(Graphics g)
-        {
-            DrawMarking(g);
-            for (int i = 0; i < countPlaces - 1; i++)
-            {
-                var PoisonousSnake = terrariumStages[currentLevel][i];
-                if (PoisonousSnake != null)
-                {
-                    PoisonousSnake.setPosition(35 + i / 2 * placeSizeWidth + 35, i % 2 * placeSizeHeight + 75);
-                    PoisonousSnake.drawAnimal(g);
-                }
-            }
-        }
 
         private void DrawMarking(Graphics g)
         {
@@ -142,12 +147,6 @@ namespace Lab5
             {
                 return false;
             }
-            /*
-            if (!filename.Contains("txt")) 
-            {
-                throw new TerrariumFormatException();
-            }
-            */
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
                 string s = "";

@@ -7,8 +7,96 @@ using System.Threading.Tasks;
 
 namespace Lab5
 {
-    public class PoisonousSnake:Snake
+    public class PoisonousSnake:Snake, IComparable<PoisonousSnake>, IEquatable<PoisonousSnake>
     {
+        public int CompareTo(PoisonousSnake other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (MaxCountBirds != other.MaxCountBirds)
+            {
+                return MaxCountBirds.CompareTo(other.MaxCountBirds);
+            }
+            if (MaxCountMouse != other.MaxCountMouse)
+            {
+                return MaxCountMouse.CompareTo(other.MaxCountMouse);
+            }
+            if (height != other.height)
+            {
+                return height.CompareTo(other.height);
+            }
+            if (ColorBody1 != other.ColorBody1)
+            {
+                return ColorBody1.Name.CompareTo(other.ColorBody1.Name);
+            }
+            if (ColorBody2 != other.ColorBody2)
+            {
+                return ColorBody2.Name.CompareTo(other.ColorBody2.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals(PoisonousSnake other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (MaxCountBirds != other.MaxCountBirds)
+            {
+                return false;
+            }
+            if (MaxCountMouse != other.MaxCountMouse)
+            {
+                return false;
+            }
+            if (height != other.height)
+            {
+                return false;
+            }
+            if (ColorBody1 != other.ColorBody1)
+            {
+                return false;
+            }
+            if (ColorBody2 != other.ColorBody2)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            PoisonousSnake poisonousSnakeObj = obj as PoisonousSnake;
+            if (poisonousSnakeObj == null)
+            {
+                return false;
+            }else
+            {
+                return Equals(poisonousSnakeObj);
+            }
+            
+        }
+
+        public override int GetHashCode()
+        {
+            return MaxSpeed.GetHashCode();
+        }
+
         public double countPoison { set; get; }
         public override int MaxSpeed
         {

@@ -7,13 +7,85 @@ using System.Threading.Tasks;
 
 namespace Lab5
 {
-    public class Kobra:PoisonousSnake
+    public class Kobra:PoisonousSnake,IComparable<Kobra>,IEquatable<Kobra>
     {
+        public int CompareTo(Kobra other)
+        {
+            var res = (this is PoisonousSnake).CompareTo(other is PoisonousSnake);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (leftHood != other.leftHood)
+            {
+                return leftHood.CompareTo(other.leftHood);
+            }
+            if (rightHood != other.rightHood)
+            {
+                return rightHood.CompareTo(other.rightHood);
+            }
+            if (ColorBody1 != other.ColorBody1)
+            {
+                return ColorBody1.Name.CompareTo(other.ColorBody1.Name);
+            }
+            if (ColorBody2 != other.ColorBody2)
+            {
+                return ColorBody2.Name.CompareTo(other.ColorBody2.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals(Kobra other)
+        {
+            var res = (this is PoisonousSnake).Equals(other is PoisonousSnake);
+            if (!res)
+            {
+                return res;
+            }
+            if (leftHood != other.leftHood)
+            {
+                return false;
+            }
+            if (rightHood != other.rightHood)
+            {
+                return false;
+            }
+            if (ColorBody1 != other.ColorBody1)
+            {
+                return false;
+            }
+            if (ColorBody2 != other.ColorBody2)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            Kobra kobraObj = obj as Kobra;
+            if (kobraObj == null)
+            {
+                return false;
+            }else
+            {
+                return Equals(kobraObj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+
         private bool leftHood;
         private bool rightHood;
         private System.Drawing.Color dopColor;
-        //private Color dopColor;
-       // private Color mainColor;
 
         public Kobra(int maxSpeed, int maxCountMouses, int maxCountBirdss, int height,
             Color color1, bool leftHood, bool rightHood,
@@ -68,18 +140,6 @@ namespace Lab5
             g.DrawLine(pen, point2, point3);
             g.DrawLine(pen, point2, point4);
         }
-
-        /*
-        public override void setDopColor(Color color)
-        {
-            ColorBody2 = color;
-        }
-        
-        public override void setMainColor(Color color)
-        {
-            ColorBody1 = color;
-        }
-        */
         public override string getInfo()
         {
             return MaxSpeed + ";" + MaxCountMouse + ";" + MaxCountBirds + ";" + height + ";" + ColorBody1.Name +
