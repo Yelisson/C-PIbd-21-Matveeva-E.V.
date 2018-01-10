@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab2
+namespace Lab3
 {
-    public class PoisonousSnake:Snake
+    public class PoisonousSnake: Snake
     {
         public double countPoison { set; get; }
         public override int MaxSpeed
@@ -74,7 +74,7 @@ namespace Lab2
             }
             protected set
             {
-                if (value > 150 && value < 1500)
+                if (value > 150 && value < 550)
                 {
                     base.height = value;
                 }
