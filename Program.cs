@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab4
+namespace Lab5
 {
+    public delegate void myDel(Lab5.Interface1 snake);
     static class Program
     {
         /// <summary>
