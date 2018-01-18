@@ -12,8 +12,7 @@ namespace Lab5
         private bool leftHood;
         private bool rightHood;
         private System.Drawing.Color dopColor;
-        //private Color dopColor;
-       // private Color mainColor;
+    
 
         public Kobra(int maxSpeed, int maxCountMouses, int maxCountBirdss, int height,
             Color color1, bool leftHood, bool rightHood,
@@ -23,8 +22,7 @@ namespace Lab5
             this.rightHood = rightHood;
             this.ColorBody1 = color1;
             this.ColorBody2 = color2;
-            //this.mainColor = color1;
-           // this.dopColor = color2;
+
            
         }
 
@@ -69,17 +67,7 @@ namespace Lab5
             g.DrawLine(pen, point2, point4);
         }
 
-        /*
-        public override void setDopColor(Color color)
-        {
-            ColorBody2 = color;
-        }
-        
-        public override void setMainColor(Color color)
-        {
-            ColorBody1 = color;
-        }
-        */
+
         public override string getInfo()
         {
             return MaxSpeed + ";" + MaxCountMouse + ";" + MaxCountBirds + ";" + height + ";" + ColorBody1.Name +
