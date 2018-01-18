@@ -80,14 +80,12 @@ namespace Lab5
         private void panelSnake_DragDrop(object sender, DragEventArgs e)
         {
             switch (e.Data.GetData(DataFormats.Text).ToString())
-            {//случаным образом выбриаем какая машина встанет
+            {
                 case "Ядовитая змея":
-                    //snake = new PoisonousSnake(100, 4, 500, Color.White);
                     snake= new PoisonousSnake(100, 15, 16, 200, Color.Blue, Color.Red);
                     Draw();
                     break;
                 case "Кобра":
-                    // kobra = new Kobra(100, 4, 500, Color.White, true, true, true, Color.Black);
                     snake = new Kobra(100, 15, 16, 200, Color.Green, true, true, Color.Yellow);
                     Draw();
                     break;
@@ -132,13 +130,6 @@ namespace Lab5
         {
             if (snake != null)
             {
-                /*
-                if (snake is Kobra)
-                {
-                    (snake as Kobra).setDopColor((Color)e.Data.GetData(typeof(Color)));
-                    Draw();
-                }
-                */
                 
                 snake.setDopColor((Color)e.Data.GetData(typeof(Color)));
                 Draw();
