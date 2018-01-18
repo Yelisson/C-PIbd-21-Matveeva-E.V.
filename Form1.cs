@@ -16,8 +16,8 @@ namespace Lab5
         Terrarium terrarium;
         private Logger log;
         FormSelectSnake form;
-        //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-        //openFileDialog1.InitialDirectory = "c:\\" ;
+ 
+ 
         
         public Form1()
         {
