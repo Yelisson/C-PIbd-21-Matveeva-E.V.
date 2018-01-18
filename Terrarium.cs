@@ -169,7 +169,6 @@ namespace Lab5
                 else
                 {
                     throw new TerrariumFormatException();
-                    //return false;
                 }
                 int counter = -1;
                 for(int i = 1; i < strs.Length; ++i)
