@@ -142,6 +142,7 @@ namespace Lab5
             {
                 return false;
             }
+ 
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
                 string s = "";
@@ -167,7 +168,7 @@ namespace Lab5
                 }
                 else
                 {
-                    return false;
+                    throw new TerrariumFormatException();
                 }
                 int counter = -1;
                 for(int i = 1; i < strs.Length; ++i)

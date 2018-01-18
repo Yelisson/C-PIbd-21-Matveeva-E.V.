@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,15 @@ namespace Lab5
     public partial class Form1 : Form
     {
         Terrarium terrarium;
-
+        private Logger log;
         FormSelectSnake form;
+ 
+ 
+        
         public Form1()
         {
             InitializeComponent();
+            log = LogManager.GetCurrentClassLogger();
             terrarium = new Terrarium(5);
             for (int i = 1; i < 6; i++)
             {
@@ -50,20 +55,26 @@ namespace Lab5
         {
             if (snake != null)
             {
-                int place = terrarium.putSnakeInTerrarium(snake);
-                if (place > -1)
+                try
                 {
+                    int place = terrarium.putSnakeInTerrarium(snake);
+                    log.Info("Отдали змею");
                     Draw();
-                    MessageBox.Show("Ваше место: " + place);
-                }
-                else
+                    MessageBox.Show("Ваше место " + place);
+                }catch(TerrariumOverflowException ex)
                 {
-                    MessageBox.Show("Машину не удалось поставить");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 
-
+        
         private void buttonSetKobra_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -74,6 +85,7 @@ namespace Lab5
                 {
                     var Snake = new Kobra(100, 15, 16, 200, dialog.Color, true, true, dialogDop.Color);
                     int place = terrarium.putSnakeInTerrarium(Snake);
+                    log.Info("Отдали змею");
                     Draw();
                     MessageBox.Show("Место: " + place);
                 }
@@ -87,20 +99,26 @@ namespace Lab5
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
-                    Interface1 Snake = terrarium.getSnakeInTerrarium(Convert.ToInt32(maskedTextBox1.Text));
-                    if (Snake != null)
+                    try
                     {
+                        Interface1 Snake = terrarium.getSnakeInTerrarium(Convert.ToInt32(maskedTextBox1.Text));
                         Bitmap bmp = new Bitmap(pictureBoxSmall.Width, pictureBoxSmall.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         Snake.setPosition(50, 50);
                         Snake.drawAnimal(gr);
                         pictureBoxSmall.Image = bmp;
+                        log.Info("Забрали змею");
                         Draw();
-                    }
-                    else
+                    }catch(TerrariumIndexOutOfRangeException ex)
                     {
-                        MessageBox.Show("Извинте, на этом месте нет машины");
+                        MessageBox.Show(ex.Message, "Неверный номер",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Общая ошибка",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                 }
             }
         }
@@ -109,6 +127,7 @@ namespace Lab5
         {
             terrarium.LevelDown();
             listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
+            log.Info("Переход на уровень ниже.Текущий уровень: " + terrarium.getCurrentLevel);
             Draw();
         }
 
@@ -116,6 +135,7 @@ namespace Lab5
         {
             terrarium.LevelUp();
             listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
+            log.Info("Переход на уровень выше.Текущий уровень: " + terrarium.getCurrentLevel);
             Draw();
         }
 
@@ -127,7 +147,9 @@ namespace Lab5
                 {
                     MessageBox.Show("Сохранение прошло успешно", "",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }else
+                    log.Info("Сохранение данных в файл");
+                }
+                else
                 {
                     MessageBox.Show("Не сохранилось", "",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -137,20 +159,35 @@ namespace Lab5
 
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (terrarium.LoadData(openFileDialog1.FileName))
+            {                     
+                try
                 {
-                    MessageBox.Show("Загрузили", "",
+                    if (terrarium.LoadData(openFileDialog1.FileName))
+                    {
+                            MessageBox.Show("Загрузили", "",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            log.Info("Загрузка данных из файла");
+                    }
                 }
-                else
+                catch (TerrariumFormatException ex)
                 {
-                    MessageBox.Show("Не загрузили", "",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неверный формат",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Draw();
-            }
-        }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+             
+             }
+             Draw();
+         }
     }
-}
+ }
+

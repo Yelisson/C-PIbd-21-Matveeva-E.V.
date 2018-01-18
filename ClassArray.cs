@@ -22,7 +22,7 @@ namespace Lab5
         {
             if (p.places.Count == p.maxCount)
             {
-                return -1;
+                throw new TerrariumOverflowException();
             }
             for (int i = 0; i < p.places.Count; i++)
             {
@@ -44,7 +44,7 @@ namespace Lab5
                 p.places.Remove(index);
                 return poisonousSnake;
             }
-            return p.defaultValue;
+            throw new TerrariumIndexOutOfRangeException();
         }
 
         private bool CheckFreePlace(int index)
