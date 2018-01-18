@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab4
+namespace Lab5
 {
-    public class Kobra: PoisonousSnake
+    public class Kobra:PoisonousSnake
     {
         private bool leftHood;
         private bool rightHood;
@@ -43,6 +43,11 @@ namespace lab4
             g.DrawLine(pen, point1, point2);
             g.DrawLine(pen, point2, point3);
             g.DrawLine(pen, point2, point4);
+        }
+
+        public void setDopColor(Color color)
+        {
+            dopColor = color;
         }
     }
 }

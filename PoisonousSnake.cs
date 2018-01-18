@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab4
+namespace Lab5
 {
-    public class PoisonousSnake: Snake
+    public class PoisonousSnake:Snake
     {
         public double countPoison { set; get; }
         public override int MaxSpeed

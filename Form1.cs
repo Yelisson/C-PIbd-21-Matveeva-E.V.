@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab4
+namespace Lab5
 {
     public partial class Form1 : Form
     {
         Terrarium terrarium;
+
+        FormSelectSnake form;
         public Form1()
         {
             InitializeComponent();
@@ -37,16 +39,30 @@ namespace lab4
         }
         private void buttonSetSnake_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                var Snake = new PoisonousSnake(100, 15, 16, 200, dialog.Color, Color.Yellow);
-                int place = terrarium.putSnakeInTerrarium(Snake);
-                Draw();
-                MessageBox.Show("Место: " + place);
-            }
+
+            form = new FormSelectSnake();
+            form.AddEvent(AddSnake);
+            form.Show();
 
         }
+
+        private void AddSnake(Interface1 snake)
+        {
+            if (snake != null)
+            {
+                int place = terrarium.putSnakeInTerrarium(snake);
+                if (place > -1)
+                {
+                    Draw();
+                    MessageBox.Show("Ваше место: " + place);
+                }
+                else
+                {
+                    MessageBox.Show("Машину не удалось поставить");
+                }
+            }
+        }
+
 
         private void buttonSetKobra_Click(object sender, EventArgs e)
         {
@@ -62,12 +78,10 @@ namespace lab4
                     MessageBox.Show("Место: " + place);
                 }
             }
-
         }
 
         private void buttonGetSnake_Click(object sender, EventArgs e)
         {
-
             if (listBoxLevels.SelectedIndex > -1)
             {
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
@@ -89,7 +103,6 @@ namespace lab4
                     }
                 }
             }
-
         }
 
         private void buttonDown_Click(object sender, EventArgs e)
@@ -104,7 +117,6 @@ namespace lab4
             terrarium.LevelUp();
             listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
             Draw();
-
         }
     }
 }

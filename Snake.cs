@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab4
+namespace Lab5
 {
-    public abstract class Snake: Interface1
+    public abstract class Snake:Interface1
     {
         public abstract void drawAnimal(Graphics g);
         public abstract void moveAnimal(Graphics g);
@@ -45,6 +45,15 @@ namespace lab4
             {
                 countBirds += count;
             }
+        }
+
+        public virtual void setMainColor(Color color)
+        {
+            ColorBody1 = color;
+        }
+        public virtual void setDopColor(Color color)
+        {
+            ColorBody2 = color;
         }
     }
 }

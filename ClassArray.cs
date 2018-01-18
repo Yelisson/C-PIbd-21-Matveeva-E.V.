@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab4
+namespace Lab5
 {
-    class ClassArray<T> where T : Interface1
+    class ClassArray<T>where T:Interface1
     {
         private Dictionary<int, T> places;
         private int maxCount;
@@ -28,12 +28,12 @@ namespace lab4
             {
                 if (p.CheckFreePlace(i))
                 {
-                    p.places.Add(i,poisonousSnake);
+                    p.places.Add(i, poisonousSnake);
                     return i;
                 }
             }
             p.places.Add(p.places.Count, poisonousSnake);
-            return p.places.Count-1;
+            return p.places.Count - 1;
         }
 
         public static T operator -(ClassArray<T> p, int index)
@@ -54,7 +54,7 @@ namespace lab4
 
         public T this[int ind]
         {
-          get
+            get
             {
                 if (places.ContainsKey(ind))
                 {

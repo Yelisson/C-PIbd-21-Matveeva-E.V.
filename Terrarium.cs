@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab4
+namespace Lab5
 {
     class Terrarium
     {
@@ -26,7 +26,7 @@ namespace lab4
         public Terrarium(int countStages)
         {
             terrariumStages = new List<ClassArray<Interface1>>(countStages);
-            for(int i = 0; i < countStages; i++)
+            for (int i = 0; i < countStages; i++)
             {
                 terrariumStages.Add(new ClassArray<Interface1>(countPlaces, null));
             }
@@ -57,11 +57,11 @@ namespace lab4
         {
             return terrariumStages[currentLevel] - number;
         }
-        
+
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < countPlaces-1; i++)
+            for (int i = 0; i < countPlaces - 1; i++)
             {
                 var PoisonousSnake = terrariumStages[currentLevel][i];
                 if (PoisonousSnake != null)
@@ -71,12 +71,12 @@ namespace lab4
                 }
             }
         }
-        
+
         private void DrawMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);
             g.DrawString("L" + (currentLevel + 1), new Font("Arial", 30), new SolidBrush(Color.Blue),
-                    placeSizeWidth+160, 320);
+                    placeSizeWidth + 160, 320);
             g.DrawRectangle(pen, 0, 0, (countPlaces) * placeSizeWidth, 1000);
             for (int i = 0; i < 3; i++)
             {
@@ -86,7 +86,7 @@ namespace lab4
                         i * placeSizeWidth + 270, j * placeSizeHeight);
                     if (j < 2)
                     {
-                        g.DrawString((i*2  + j + 1).ToString(), new Font("Arial", 30),
+                        g.DrawString((i * 2 + j + 1).ToString(), new Font("Arial", 30),
                             new SolidBrush(Color.Blue), i * placeSizeWidth + 60, j * placeSizeHeight + 50);
                     }
                 }
