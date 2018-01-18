@@ -142,12 +142,7 @@ namespace Lab5
             {
                 return false;
             }
-            /*
-            if (!filename.Contains("txt")) 
-            {
-                throw new TerrariumFormatException();
-            }
-            */
+ 
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
                 string s = "";
