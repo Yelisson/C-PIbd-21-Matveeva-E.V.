@@ -55,9 +55,6 @@ namespace Lab5
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
 
         }
- 
-
-    
 
         private void labelKobra_MouseDown(object sender, MouseEventArgs e)
         {

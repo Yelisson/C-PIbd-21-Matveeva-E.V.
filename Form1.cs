@@ -118,5 +118,39 @@ namespace Lab5
             listBoxLevels.SelectedIndex = terrarium.getCurrentLevel;
             Draw();
         }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (terrarium.SaveData(saveFileDialog1.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }else
+                {
+                    MessageBox.Show("Не сохранилось", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (terrarium.LoadData(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("Загрузили", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Draw();
+            }
+        }
     }
 }

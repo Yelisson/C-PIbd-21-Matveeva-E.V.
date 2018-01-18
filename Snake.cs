@@ -55,5 +55,7 @@ namespace Lab5
         {
             ColorBody2 = color;
         }
+
+        public abstract string getInfo();
     }
 }
