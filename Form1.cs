@@ -16,8 +16,6 @@ namespace Lab5
         Terrarium terrarium;
         private Logger log;
         FormSelectSnake form;
- 
- 
         
         public Form1()
         {
@@ -188,6 +186,13 @@ namespace Lab5
              }
              Draw();
          }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            terrarium.Sort();
+            Draw();
+            log.Info("Сортировка уровня " + terrarium.getCurrentLevel);
+        }
     }
  }
 
